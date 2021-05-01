@@ -10,4 +10,4 @@ apk del --no-cache npm
 ADD main.js template.html /app/
 EXPOSE 3000
 
-CMD node /app/main.js
+CMD ["node","/app/main.js"]

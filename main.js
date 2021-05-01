@@ -4,6 +4,10 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 
+process.on("SIGINT", function () {
+	process.exit();
+});
+
 const getData = async () => {
 	const res = await fetch("https://www.expressvpn.com/what-is-my-ip");
 	const html = await res.text();
