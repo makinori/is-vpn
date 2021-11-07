@@ -1,6 +1,7 @@
 # Is VPN
 
-https://hub.docker.com/r/makitsune/is-vpn
+-   https://github.com/makitsune/is-vpn
+-   https://hub.docker.com/r/makitsune/is-vpn
 
 Docker image to determine if you're on a VPN network.
 
