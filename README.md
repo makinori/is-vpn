@@ -2,7 +2,7 @@
 
 https://hub.docker.com/r/makitsune/is-vpn
 
-Docker container to determine if you're on a VPN network.
+Docker image to determine if you're on a VPN network.
 
 -   `/` to receive a html page
 -   `/api` to receive JSON
