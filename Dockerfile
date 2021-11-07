@@ -1,13 +1,7 @@
-FROM alpine:latest
+FROM denoland/deno:alpine
 
 WORKDIR /app
-ADD package.json package-lock.json /app/
-RUN \
-apk add --no-cache nodejs npm && \
-NODE_ENV=production npm install && \
-apk del --no-cache npm
+COPY app/. /app/.
+RUN deno run deps.ts
 
-ADD main.js template.html /app/
-EXPOSE 3000
-
-CMD ["node","/app/main.js"]
+CMD ["deno", "run", "--allow-net", "--allow-env", "--allow-read", "main.ts"]
