@@ -10,13 +10,14 @@ Docker image to determine if you're on a VPN network.
 
 Services available:
 
+-   `mullvad`
 -   `nordvpn`
 -   `expressvpn`
 
 ## Run
 
 ```bash
-docker run -it --rm -p 8080:8080 -e SERVICE=nordvpn makitsune/is-vpn
+docker run -it --rm -p 8080:8080 -e SERVICE=mullvad makitsune/is-vpn
 ```
 
 ```yml

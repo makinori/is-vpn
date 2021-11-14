@@ -7,6 +7,18 @@ interface VpnStatus {
 	name: string;
 }
 
+async function mullvad() {
+	const res = await fetch("https://ipv4.am.i.mullvad.net/json");
+	const { ip, country, city, mullvad_exit_ip, mullvad_exit_ip_hostname } =
+		await res.json();
+	return {
+		ip,
+		status: mullvad_exit_ip,
+		location: `${country}, ${city} (${mullvad_exit_ip_hostname})`,
+		name: "Mullvad",
+	};
+}
+
 async function nordvpn() {
 	const res = await fetch(
 		"https://nordvpn.com/wp-admin/admin-ajax.php?action=get_user_info_data",
@@ -43,6 +55,7 @@ async function expressvpn() {
 }
 
 export const services: { [service: string]: () => Promise<VpnStatus> } = {
+	mullvad,
 	nordvpn,
 	expressvpn,
 };
