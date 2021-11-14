@@ -14,7 +14,9 @@ async function mullvad() {
 	return {
 		ip,
 		status: mullvad_exit_ip,
-		location: `${country}, ${city} (${mullvad_exit_ip_hostname})`,
+		location: `${country}, ${city}${
+			mullvad_exit_ip_hostname ? ` (${mullvad_exit_ip_hostname})` : ""
+		}`,
 		name: "Mullvad",
 	};
 }
