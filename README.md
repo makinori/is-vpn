@@ -30,8 +30,9 @@ services:
             - SERVICE=nordvpn
 ```
 
-## Build
+## Build and publish
 
 ```bash
 docker build -t ghcr.io/makidrone/is-vpn:latest .
+docker push ghcr.io/makidrone/is-vpn:latest
 ```
