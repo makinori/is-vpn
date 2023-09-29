@@ -34,11 +34,14 @@ router.get("/", async ctx => {
 				/{{ text }}/g,
 				status.status
 					? "Connected to " + status.name
-					: "Not connected to " + status.name + "!",
+					: "Not connected to " + status.name,
 			)
 			.replace(/{{ ip }}/g, status.ip)
 			.replace(/{{ location }}/g, status.location)
-			.replace(/{{ bodyClass }}/g, status.status ? "green" : "");
+			.replace(
+				/{{ statusClass }}/g,
+				status.status ? "status-true" : "status-false",
+			);
 	} catch (error) {
 		ctx.response.status = 500;
 		ctx.response.body = { error: error.toString() };

@@ -1,19 +1,26 @@
 <html>
 	<head>
+		<link rel="preconnect" href="https://rsms.me/" />
+		<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
 		<style>
+			:root {
+				font-family: "Inter", sans-serif;
+			}
+
+			@supports (font-variation-settings: normal) {
+				:root {
+					font-family: "Inter var", sans-serif;
+				}
+			}
+
 			* {
 				margin: 0;
 			}
 
 			body {
-				background-color: #f44336;
-				font-family: "Roboto", sans-serif;
+				background-color: #111;
+				font-family: "Inter", sans-serif;
 				color: #fff;
-				text-align: center;
-			}
-
-			body.green {
-				background-color: #8bc34a;
 			}
 
 			.container {
@@ -25,29 +32,49 @@
 				height: 100%;
 			}
 
-			h1 {
-				font-size: 3rem;
+			.divider {
+				border-top: solid 2px rgba(255, 255, 255, 0.2);
+				width: 30rem;
 			}
 
-			h2 {
-				font-size: 2rem;
+			p {
+				font-weight: 800;
+				margin-bottom: 8px;
+				text-transform: uppercase;
+			}
+
+			h1 {
+				font-weight: 600;
+				margin-bottom: 24px;
+				display: inline-block;
+				padding-bottom: 8px;
+				background-size: 100% 4px;
+				background-position: bottom left;
+				background-repeat: no-repeat;
+				transition: 1s all;
+			}
+
+			.status-true {
+				color: #8bc34a;
+				background-image: linear-gradient(#8bc34a, #8bc34a);
+			}
+
+			.status-false {
+				color: #f44336;
+				background-image: linear-gradient(#f44336, #f44336);
 			}
 		</style>
 	</head>
-	<body class="{{ bodyClass }}">
+	<body>
 		<div class="container">
-			<h1>{{ text }}</h1>
-			<br />
-			<h1>{{ ip }}</h1>
-			<br />
-			<div
-				style="
-					border-top: solid 2px rgba(255, 255, 255, 0.3);
-					width: 30rem;
-				"
-			></div>
-			<br />
-			<h2>{{ location }}</h2>
+			<div class="inner-container">
+				<p>IP ADDRESS</p>
+				<h1 class="{{ statusClass }}">{{ ip }}</h1>
+				<p>SERVICE VPN</p>
+				<h1 class="{{ statusClass }}">{{ connected }}</h1>
+				<p>LOCATION</p>
+				<h1 class="{{ statusClass }}">{{ location }}</h1>
+			</div>
 		</div>
 	</body>
 </html>
