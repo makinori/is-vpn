@@ -7,7 +7,7 @@ interface VpnStatus {
 	name: string;
 }
 
-async function mullvad() {
+async function mullvad(): Promise<VpnStatus> {
 	const res = await fetch("https://ipv4.am.i.mullvad.net/json");
 	const { ip, country, city, mullvad_exit_ip, mullvad_exit_ip_hostname } =
 		await res.json();
@@ -21,7 +21,7 @@ async function mullvad() {
 	};
 }
 
-async function nordvpn() {
+async function nordvpn(): Promise<VpnStatus> {
 	const res = await fetch(
 		"https://nordvpn.com/wp-admin/admin-ajax.php?action=get_user_info_data",
 	);
@@ -34,7 +34,7 @@ async function nordvpn() {
 	};
 }
 
-async function expressvpn() {
+async function expressvpn(): Promise<VpnStatus> {
 	const res = await fetch("https://www.expressvpn.com/what-is-my-ip");
 	const doc = new DOMParser().parseFromString(await res.text(), "text/html")!;
 
@@ -56,8 +56,20 @@ async function expressvpn() {
 	};
 }
 
+async function surfshark(): Promise<VpnStatus> {
+	const res = await fetch("https://surfshark.com/api/v1/server/user");
+	const { ip, secured, city, region, country } = await res.json();
+	return {
+		ip,
+		status: secured,
+		location: `${country}, ${region}, ${city}`,
+		name: "Surfshark",
+	};
+}
+
 export const services: { [service: string]: () => Promise<VpnStatus> } = {
 	mullvad,
 	nordvpn,
 	expressvpn,
+	surfshark,
 };
