@@ -1,8 +1,5 @@
 # Is VPN
 
--   https://github.com/makitsune/is-vpn
--   https://hub.docker.com/r/makitsune/is-vpn
-
 Docker image to determine if you're on a VPN network.
 
 -   `/` to receive a html page
@@ -13,18 +10,19 @@ Services available:
 -   `mullvad`
 -   `nordvpn`
 -   `expressvpn`
+-   `surfshark`
 
 ## Run
 
 ```bash
-docker run -it --rm -p 8080:8080 -e SERVICE=mullvad makitsune/is-vpn
+docker run -it --rm -p 8080:8080 -e SERVICE=mullvad ghcr.io/makidrone/is-vpn:latest
 ```
 
 ```yml
 version: "3.6"
 services:
     is-vpn:
-        image: makitsune/is-vpn
+        image: ghcr.io/makidrone/is-vpn:latest
         restart: always
         ports:
             - 8080:8080
@@ -35,5 +33,5 @@ services:
 ## Build
 
 ```bash
-docker build -t makitsune/is-vpn .
+docker build -t ghcr.io/makidrone/is-vpn:latest .
 ```
