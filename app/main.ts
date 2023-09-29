@@ -31,7 +31,7 @@ router.get("/", async ctx => {
 		const status = await services[SERVICE]();
 		ctx.response.body = template
 			.replace(
-				/{{ text }}/g,
+				/{{ connected }}/g,
 				status.status
 					? "Connected to " + status.name
 					: "Not connected to " + status.name,
