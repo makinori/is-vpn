@@ -15,14 +15,14 @@ Services available:
 ## Run
 
 ```bash
-docker run -it --rm -p 8080:8080 -e SERVICE=mullvad ghcr.io/makidrone/is-vpn:latest
+docker run -it --rm -p 8080:8080 -e SERVICE=mullvad ghcr.io/makidoll/is-vpn:latest
 ```
 
 ```yml
 version: "3.6"
 services:
     is-vpn:
-        image: ghcr.io/makidrone/is-vpn:latest
+        image: ghcr.io/makidoll/is-vpn:latest
         restart: always
         ports:
             - 8080:8080
@@ -33,6 +33,6 @@ services:
 ## Build and publish
 
 ```bash
-docker build -t ghcr.io/makidrone/is-vpn:latest .
-docker push ghcr.io/makidrone/is-vpn:latest
+docker build -t ghcr.io/makidoll/is-vpn:latest .
+docker push ghcr.io/makidoll/is-vpn:latest
 ```
