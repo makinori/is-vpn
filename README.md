@@ -11,6 +11,7 @@ Services available:
 -   `nordvpn`
 -   `expressvpn`
 -   `surfshark`
+-   `privateinternetaccess`
 
 ## Run
 

@@ -67,9 +67,38 @@ async function surfshark(): Promise<VpnStatus> {
 	};
 }
 
+async function privateinternetaccess(): Promise<VpnStatus> {
+	const res = await fetch(
+		"https://www.privateinternetaccess.com/site-api/get-location-info",
+	);
+
+	const { ip, cn, cty, rgn } = await res.json();
+
+	const exposedRes = await fetch(
+		"https://www.privateinternetaccess.com/site-api/exposed-check",
+		{
+			method: "POST",
+			body: JSON.stringify({ ipAddress: ip }),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		},
+	);
+
+	const { status } = await exposedRes.json();
+
+	return {
+		ip,
+		status: status == null ? false : !status,
+		location: `${cn}, ${rgn}, ${cty}`,
+		name: "Private Internet Access",
+	};
+}
+
 export const services: { [service: string]: () => Promise<VpnStatus> } = {
 	mullvad,
 	nordvpn,
 	expressvpn,
 	surfshark,
+	privateinternetaccess,
 };
