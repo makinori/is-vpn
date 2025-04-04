@@ -54,12 +54,12 @@
 				transition: 1s all;
 			}
 
-			.status-true {
+			.status-active h1 {
 				color: #8bc34a;
 				background-image: linear-gradient(#8bc34a, #8bc34a);
 			}
 
-			.status-false {
+			.status-inactive h1 {
 				color: #f44336;
 				background-image: linear-gradient(#f44336, #f44336);
 			}
@@ -67,13 +67,18 @@
 	</head>
 	<body>
 		<div class="container">
-			<div class="inner-container">
+			<div
+				class="inner-container status-{{if .Status}}active{{else}}inactive{{end}}"
+			>
 				<p>IP ADDRESS</p>
-				<h1 class="{{ statusClass }}">{{ ip }}</h1>
+				<h1>{{.IP}}</h1>
 				<p>SERVICE VPN</p>
-				<h1 class="{{ statusClass }}">{{ connected }}</h1>
+				<h1>
+					{{if .Status}}Connected{{else}}Not connected{{end}} to
+					{{.Name}}
+				</h1>
 				<p>LOCATION</p>
-				<h1 class="{{ statusClass }}">{{ location }}</h1>
+				<h1>{{.Location}}</h1>
 			</div>
 		</div>
 	</body>
