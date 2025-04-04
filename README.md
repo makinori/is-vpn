@@ -7,33 +7,35 @@ Docker image to determine if you're on a VPN network.
 
 Services available:
 
--   `mullvad`
--   `nordvpn`
--   `expressvpn`
--   `surfshark`
--   `privateinternetaccess`
+_\*some may be broken_
+
+-   `expressvpn`\*
+-   `mullvad`\*
+-   `nordvpn`\*
+-   `privateinternetaccess` or `pia`
+-   `surfshark`\*
 
 ## Run
 
 ```bash
-docker run -it --rm -p 8080:8080 -e SERVICE=mullvad ghcr.io/makidoll/is-vpn:latest
+podman run -it --rm -p 8080:8080 -e SERVICE=pia ghcr.io/makinori/is-vpn:latest
 ```
 
 ```yml
-version: "3.6"
 services:
     is-vpn:
-        image: ghcr.io/makidoll/is-vpn:latest
+        image: ghcr.io/makinori/is-vpn:latest
         restart: always
+        # network: service:vpn
         ports:
             - 8080:8080
         environment:
-            - SERVICE=nordvpn
+            - SERVICE=pia
 ```
 
 ## Build and publish
 
 ```bash
-docker build -t ghcr.io/makidoll/is-vpn:latest .
-docker push ghcr.io/makidoll/is-vpn:latest
+podman build -t ghcr.io/makinori/is-vpn:latest .
+podman push ghcr.io/makinori/is-vpn:latest
 ```
