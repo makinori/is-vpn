@@ -1,16 +1,21 @@
 <html>
 	<head>
-		<link rel="preconnect" href="https://rsms.me/" />
-		<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+		<title>Is VPN: {{.Name}}</title>
 		<style>
-			:root {
-				font-family: "Inter", sans-serif;
+			@font-face {
+				font-family: "SN Pro";
+				src: url(/public/SNPro-VariableRegular.woff2)
+					format("woff2-variations");
+				font-weight: 200 900;
+				font-style: normal;
 			}
 
-			@supports (font-variation-settings: normal) {
-				:root {
-					font-family: "Inter var", sans-serif;
-				}
+			@font-face {
+				font-family: "SN Pro";
+				src: url(/public/SNPro-VariableItalic.woff2)
+					format("woff2-variations");
+				font-weight: 200 900;
+				font-style: italic;
 			}
 
 			* {
@@ -19,7 +24,7 @@
 
 			body {
 				background-color: #111;
-				font-family: "Inter", sans-serif;
+				font-family: "SN Pro", sans-serif;
 				color: #fff;
 			}
 

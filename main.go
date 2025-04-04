@@ -2,7 +2,7 @@ package main
 
 import (
 	"bytes"
-	_ "embed"
+	"embed"
 	"encoding/json"
 	"fmt"
 	"html/template"
@@ -11,13 +11,14 @@ import (
 	"os"
 	"slices"
 	"strconv"
+	"strings"
 
 	"github.com/makinori/is-vpn/services"
 )
 
 var (
-	//go:embed template.html
-	HTML_TEMPLATE string
+	//go:embed template.html public/*
+	STATIC_CONTENT embed.FS
 
 	SERVICE = getEnv("SERVICE", "")
 	PORT, _ = strconv.Atoi(getEnv("PORT", "8080"))
@@ -51,7 +52,12 @@ func main() {
 		panic(err)
 	}
 
-	tmpl, err := template.New("template").Parse(HTML_TEMPLATE)
+	htmlTemplate, err := STATIC_CONTENT.ReadFile("template.html")
+	if err != nil {
+		panic(err)
+	}
+
+	tmpl, err := template.New("template").Parse(string(htmlTemplate))
 	if err != nil {
 		panic(err)
 	}
@@ -97,6 +103,11 @@ func main() {
 
 			w.Write(bytes.Bytes())
 
+			return
+		}
+
+		if strings.HasPrefix(r.URL.Path, "/public") {
+			http.ServeFileFS(w, r, STATIC_CONTENT, r.URL.Path)
 			return
 		}
 
