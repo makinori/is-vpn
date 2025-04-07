@@ -2,9 +2,6 @@
 
 <img align="right" height="200" src="https://github.com/user-attachments/assets/33f74534-07ff-4798-be6a-2913ff6d2031" />
 
-<br />
-<br />
-
 Docker image to determine if you're on a VPN network.
 
 -   `/` to receive a html page
